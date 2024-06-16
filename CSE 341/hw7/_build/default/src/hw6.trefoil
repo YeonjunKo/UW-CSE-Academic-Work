@@ -1,0 +1,20 @@
+(let
+    ((x 10) (y true) (z false))
+    (if (= x 10) y z))
+(let 
+    ((first 1) (second 5) (third 25) (fourth 125))
+    (cond
+        ((= first fourth) false)
+        ((= first third) false)
+        ((= first second) false)
+        ((= first first) true)))
+(define (fibonacci first second times)
+    (if (= times 0)
+        second
+        (fibonacci second (+ first second) (- times 1))))
+
+;; function binding: Node "define", FunctionBinding ("fibonacci", ["first", "second", "times"], if_func)
+;; interpret binding: ("fibonacci", FunctionEntry(["first"; "second"; "times"], if_func, dynenv)) :: dynenv
+;; when calling (fibonacci 1 1 8):
+;;      Parsing: Functioncall("fibonacci", [Ast.IntLit 1; Ast.IntLit 1; Ast.IntLit 8])
+;;      Interpretation: params.length = 3, args.length = 3 -> pass the RuntimeError
